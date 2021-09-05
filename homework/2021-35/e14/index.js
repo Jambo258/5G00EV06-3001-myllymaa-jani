@@ -9,7 +9,10 @@ function add(Student) {
 
 function remove() {
   var rname = readlineSync.questionInt("May i have id? ");
-  db.splice(rname, 1);
+  const r_id = db.findIndex((key) => key.id === rname);
+  if (r_id != -1) {
+    db.splice(r_id, 1);
+  }
 }
 
 function display() {
@@ -17,29 +20,15 @@ function display() {
     skinny: true,
     intersectionCharacter: "o",
     columns: [
-      { field: 0, name: "Student ID Number" },
-      { field: "b", name: "Student Name" },
+      { field: "id", name: "Student ID Number" },
+      { field: "name", name: "Student Name" },
     ],
   };
 
-  var data = [];
+  var table = asciitable(options, db);
 
-  let i = db.length - 1;
-
-  var table1 = asciitable(options, data);
-
-  if (i < 0) {
-    console.log(table1);
-  } else {
-    for (let i = 0; i < db.length; i++) {
-      data.push({ 0: db[i].id, b: db[i].name });
-      //console.log(db[i]);
-    }
-
-    var table = asciitable(options, data);
-
-    console.log(table);
-  }
+  console.log(table);
+  //console.log(db);
 }
 
 var ID = 0;
