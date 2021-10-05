@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title</title>
+
+    <meta charset="UTF-8" />
+    <style media="screen"></style>
+
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      function Table(properties) {
+        return Row(properties);
+      }
+      function Row(properties) {
+        var taulukko = [];
+        for (let i = 0; i < properties.rows; i++) {
+          for (let j = 0; j < properties.cols; j++) {
+            taulukko.push(<th>{RandomImage()}</th>);
+          }
+          taulukko.push(<tr></tr>);
+        }
+        return taulukko;
+      }
+
+      function RandomImage() {
+        var random = Math.floor(Math.random() * 3) + 1;
+        //var a = <div><img src="pallo.png" id="1" alt="pallo" width="100" height="100"/></div>;
+        //var b = <div><img src="tahti.png" id="2" alt="tahti" width="100" height="100"/></div>;
+        //var c = <div><img src="nelio.png" id="3" alt="nelio" width="100" height="100"/></div>;
+        var kuvio;
+        if (random == 1) {
+          kuvio = (
+            <div>
+              <img
+                src="pallo.png"
+                id="1"
+                alt="pallo"
+                width="100"
+                height="100"
+              />
+            </div>
+          );
+        } else if (random == 2) {
+          kuvio = (
+            <div>
+              <img
+                src="tahti.png"
+                id="2"
+                alt="tahti"
+                width="100"
+                height="100"
+              />
+            </div>
+          );
+        } else {
+          kuvio = (
+            <div>
+              <img
+                src="nelio.png"
+                id="3"
+                alt="nelio"
+                width="100"
+                height="100"
+              />
+            </div>
+          );
+        }
+
+        return kuvio;
+      }
+
+      ReactDOM.render(
+        <Table rows={4} cols={4} />,
+        document.getElementById("root")
+      );
+    </script>
+  </body>
+</html>
