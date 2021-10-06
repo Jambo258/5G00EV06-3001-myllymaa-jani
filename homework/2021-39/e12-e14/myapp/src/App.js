@@ -9,7 +9,7 @@ class App extends React.Component {
   render() {
     return (
 
-      //e12-e14
+      //e12-e13
 
       <div>
         <Person id={3} />
